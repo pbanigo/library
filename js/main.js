@@ -25,6 +25,7 @@ function createCard (title,author, pages){
     card.appendChild(p3);
     card.appendChild(p2);
     container.appendChild(card);
+    document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`
 
 }
 
