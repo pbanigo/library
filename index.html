@@ -13,14 +13,17 @@
 </head>
 <body>
 	<div id="app">
-		<p></p>
-
-
+		<div id="form">
 		<label for="title">Book Title</label>
 		<input class="form-control" type="text" id="title" name="title" minlength="3" required>
+		<label for="author">Book Author</label>
+		<input class="form-control" type="text" id="author" name="author" minlength="3" required>
 		<label for="pages">Pages in book</label>
-		<input class="form-control" type="number" id="pages" name="pages" minlength="3" required>
+		<input class="form-control" type="number" id="pages" name="pages" required>
 		<button type="submit" onclick="addBookToLibrary()">Submit</button>
+		</div>
+		<div id="books">
+		</div>
 	</div>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

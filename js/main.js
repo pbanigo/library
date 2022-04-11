@@ -2,23 +2,27 @@ let myLibrary = [];
 let idNum = 1;
 
 class Book {
-    constructor(title, pages){
+    constructor(title, author, pages){
         this.title = title;
+        this.author = author;
         this.pages = pages;
         //this.read = read
     }
 }
 
-const container = document.querySelector('#app');
-function createCard (title, pages){
+const container = document.querySelector('#books');
+function createCard (title,author, pages){
     const card = document.createElement('div');
     card.classList.add("card");
     const p1 = document.createElement("p");
-    p1.textContent = `Title is ${title}`
-
+    p1.textContent = `Title is ${title}`;
     const p2 = document.createElement("p");
     p2.textContent = `Pages are ${pages}`
+    const p3 = document.createElement("p");
+    p3.textContent = `Author is ${author}`
+
     card.appendChild(p1);
+    card.appendChild(p3);
     card.appendChild(p2);
     container.appendChild(card);
 
@@ -26,6 +30,7 @@ function createCard (title, pages){
 
 function addBookToLibrary() {
 let bookTitle = document.getElementById('title').value;
+let bookAuthor = document.getElementById('author').value;
 let bookPages = document.getElementById('pages').value;
 //document.querySelector('p').textContent = `Title is ${bookTitle} with ${bookPages} pages`;
 
@@ -36,9 +41,9 @@ let bookPages = document.getElementById('pages').value;
     //container.appendChild(grid);
     //idNum += 1;
 
-    const newBook = new Book(bookTitle,bookPages);
+    const newBook = new Book(bookTitle,bookAuthor,bookPages);
     myLibrary.push(newBook);
-    createCard(bookTitle,bookPages);
+    createCard(bookTitle,bookAuthor,bookPages);
     //idNum++;
     //return myLibrary;
     //console.log(myLibrary.length);
