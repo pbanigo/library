@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
 	<meta charset="utf-8">
 
-    <meta name="description" content="If you're bored and not sure what to do, play with our App!">
+	<meta name="description" content="If you're bored and not sure what to do, play with our App!">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -13,17 +13,23 @@
 </head>
 <body>
 	<div id="app">
-		<div id="form">
-		<label for="title">Book Title</label>
-		<input class="form-control" type="text" id="title" name="title" minlength="3" required>
-		<label for="author">Book Author</label>
-		<input class="form-control" type="text" id="author" name="author" minlength="3" required>
-		<label for="pages">Pages in book</label>
-		<input class="form-control" type="number" id="pages" name="pages" required>
-		<button type="submit" onclick="addBookToLibrary()">Submit</button>
-		<p></p>
+		<div id="sidebar">
+			<button class="form-control" onclick="bookForm()">New Book</button>
+			<div id="form">
+				<label for="title">Book Title</label>
+				<input class="form-control" type="text" id="title" name="title" minlength="3" required>
+				<label for="author">Book Author</label>
+				<input class="form-control" type="text" id="author" name="author" minlength="3" required>
+				<label for="pages">Pages in book</label>
+				<input class="form-control" type="number" id="pages" name="pages" required>
+				<button class="pt-10" type="submit" onclick="addBookToLibrary()">Submit</button>
+			</div>
+			<p></p>
+
 		</div>
-		<div id="books">
+		<div id="content">
+			<div id="books">
+			</div>
 		</div>
 	</div>
 	<!-- Latest compiled JavaScript -->
