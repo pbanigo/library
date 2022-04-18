@@ -14,7 +14,8 @@
 <body>
 	<div id="app">
 		<div id="sidebar">
-			<button class="form-control" onclick="bookForm()">New Book</button>
+			<button id="bookform" class="form-control" onclick="bookForm()">+ New Book</button>
+			<button id="hideform" class="form-control" onclick="hideForm()">Hide Form</button>
 			<div id="form">
 				<label for="title">Book Title</label>
 				<input class="form-control" type="text" id="title" name="title" minlength="3" required>

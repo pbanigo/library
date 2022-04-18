@@ -1,9 +1,20 @@
 document.getElementById('form').style.display = 'none';//Hide form on start
+document.getElementById('hideform').style.display = 'none';
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: //author, title, number of pages, whether it’s been read and anything else you might want.
 function bookForm(){
+
     document.getElementById('form').style.display = 'block';
+    document.getElementById('hideform').style.display = 'block';
+    document.getElementById('bookform').style.display = 'none';
     
 }
+function hideForm(){
+    document.getElementById('form').style.display = 'none';
+    document.getElementById('bookform').style.display = 'block';
+    document.getElementById('hideform').style.display = 'none';
+    
+}
+
 
 
 

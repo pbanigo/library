@@ -70,15 +70,15 @@ body {
     width: 100%;
     margin: auto;
 }
-}
+
 #books {
   flex-direction: column;
 }
 #form {
-  
+
     margin: 10% auto;
 }
-	#app{
+#app{
 	margin-top: 50%;
 	max-width: auto;
 }
