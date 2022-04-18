@@ -61,8 +61,22 @@ body {
 .card {
   width: 100%;
 }
+#content {
+  left: 0;
+}
+#sidebar {
+
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+}
 #books {
   flex-direction: column;
+}
+#form {
+  
+    margin: 10% auto;
 }
 	#app{
 	margin-top: 50%;

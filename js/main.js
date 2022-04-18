@@ -1,4 +1,4 @@
-document.getElementById('form').style.display = 'none';
+document.getElementById('form').style.display = 'none';//Hide form on start
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: //author, title, number of pages, whether it’s been read and anything else you might want.
 function bookForm(){
     document.getElementById('form').style.display = 'block';
@@ -13,24 +13,25 @@ function bookForm(){
 //Add a button on each book’s display to change its read status.
 //create the function that toggles a book’s read status on your Book prototype instance.
 
-var myLibrary = JSON.parse(localStorage.getItem("allEntries"));
-const container = document.querySelector('#books');
-if(myLibrary == null) {
-    myLibrary = [];
+
+let myLibrary = JSON.parse(localStorage.getItem("allEntries"));//Pick all items from localStorage
+const container = document.querySelector('#books');//Assign our book container to it's div
+if(myLibrary == null) {//if item parsed from local storage is empty
+    myLibrary = []; //assign library to an empty array
 } else {
-    //display all items in library on card
+    //display all items in library on cards
     displayBooks();
 }
 //Write a function that loops through the array and displays each book on the page. #You can display them in some sort of table, or each on their own “card”. 
 function displayBooks(){
     for (let i = 0; i < myLibrary.length; i++) {
         let item = myLibrary[i];
-        createCard(item.title,item.author,item.pages)
+        createCard(item.title,item.author,item.pages)// run the create card function for each object in my Library
     }
 
 }
 
-document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`;
+document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`;//Show books in library
 let idNum = 1;
 
 class Book {
@@ -41,10 +42,13 @@ class Book {
         //this.read = read
     }
 }
-function removeBook(){
 
-}
-function createCard (title,author, pages){
+
+
+// function removeBook(){
+
+// }
+function createCard (title,author, pages){//function to create a card div
     
     const card = document.createElement('div');
     card.classList.add("card");
@@ -57,7 +61,7 @@ function createCard (title,author, pages){
     const button = document.createElement('button');
     button.textContent = `Remove Book`;
     button.className = 'form-control'; 
-    button.onclick = removeBook(); 
+    button.onclick = function removeBook(){}; 
     card.appendChild(p1);
     card.appendChild(p3);
     card.appendChild(p2);
@@ -68,14 +72,6 @@ function createCard (title,author, pages){
 
 //add a function to the script  that can take user’s input and store the new book objects into an array. 
 function addBookToLibrary() {
-//document.querySelector('p').textContent = `Title is ${bookTitle} with ${bookPages} pages`;
-
-    //const grid = document.createElement('div');
-    //grid.classList.add("single");
-    //grid.addEventListener('mouseenter', function changeColor(){ grid.style.backgroundColor = 'black';})
-    //grid.textContent = `grid`;
-    //container.appendChild(grid);
-    //idNum += 1;
     let bookTitle = document.getElementById('title').value;
     let bookAuthor = document.getElementById('author').value;
     let bookPages = document.getElementById('pages').value;
@@ -89,13 +85,8 @@ function addBookToLibrary() {
     localStorage.setItem("allEntries", JSON.stringify(myLibrary));
     let card = createCard(bookTitle,bookAuthor,bookPages);
     }
-    document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`
+    document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`//update number after adding new book
+
+    //idNum += 1;
     //idNum++;
-    //return myLibrary;
-    //console.log(myLibrary.length);
-    //for (let i = 0; i < 5; i++) {
-   // const orwell = new Book('1984',265);
-    //myLibrary.push(orwell);
-    //}
-    //alert(myLibrary.length);
 }
