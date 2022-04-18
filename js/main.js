@@ -25,6 +25,7 @@ function hideForm(){
 //create the function that toggles a book’s read status on your Book prototype instance.
 
 
+let idNum = 0;
 let myLibrary = JSON.parse(localStorage.getItem("allEntries"));//Pick all items from localStorage
 const container = document.querySelector('#books');//Assign our book container to it's div
 if(myLibrary == null) {//if item parsed from local storage is empty
@@ -41,9 +42,10 @@ function displayBooks(){
     }
 
 }
-
-document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`;//Show books in library
-let idNum = 1;
+function countBooks(){
+    document.getElementById('count').textContent = `Your Library has ${myLibrary.length} books`;
+}
+document.getElementById('count').textContent = `Your Library has ${myLibrary.length} books`;//Show books in library
 
 class Book {
     constructor(title, author, pages){
@@ -56,13 +58,15 @@ class Book {
 
 
 
-// function removeBook(){
+ function removeBook(){
+    console.log('removed');
 
-// }
+ }
 function createCard (title,author, pages){//function to create a card div
-    
     const card = document.createElement('div');
     card.classList.add("card");
+    card.id = `data-${idNum}`;
+    const cardId = idNum;
     const p1 = document.createElement("p");
     p1.textContent = `Title is ${title}`;
     const p2 = document.createElement("p");
@@ -72,12 +76,22 @@ function createCard (title,author, pages){//function to create a card div
     const button = document.createElement('button');
     button.textContent = `Remove Book`;
     button.className = 'form-control'; 
-    button.onclick = function removeBook(){}; 
+    button.onclick = function(){
+    document.getElementById(`data-${cardId}`).remove(); 
+    myLibrary.splice(cardId, 1); 
+    if(myLibrary.length > 0) {
+    localStorage.setItem("allEntries", JSON.stringify(myLibrary)); 
+} else {
+    localStorage.clear();}
+    countBooks();
+    return false;
+  };
     card.appendChild(p1);
     card.appendChild(p3);
     card.appendChild(p2);
     card.appendChild(button);
     container.appendChild(card);
+    idNum += 1;
     }
 
 
@@ -96,7 +110,7 @@ function addBookToLibrary() {
     localStorage.setItem("allEntries", JSON.stringify(myLibrary));
     let card = createCard(bookTitle,bookAuthor,bookPages);
     }
-    document.querySelector('p').textContent = `Your Library has ${myLibrary.length} books`//update number after adding new book
+    countBooks();//update number after adding new book
 
     //idNum += 1;
     //idNum++;
