@@ -90,10 +90,9 @@ function createCard (idNo,title,author, pages){//function to create a card div
         console.clear();
        // updateCardIds(); //
         document.getElementById(`data-${cardId}`).remove(); 
-        console.log(`${myLibrary.length} after card ${cardId} removed`);
+        //return array with all elements not having the particular card id
         myLibrary = myLibrary.filter(function(el) { return el.idNo != cardId; }); 
        // myLibrary.splice(cardId, 1); //removes the wrong thing
-        console.log(`${myLibrary.length} after card ${cardId} splice`);
     if(myLibrary.length > 0) {//if anything in library, save in localStorage
         localStorage.setItem("allEntries", JSON.stringify(myLibrary)); 
 } else {//else delete the library from localStorage
