@@ -19,17 +19,7 @@ function clearCards() {
         card.remove();
   });
 }
-function updateCardIds(){
-    let count = 0;
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.id = `data-${count}`;
-        count += 1;
-  });
-    // for (let i = 0; i < myLibrary.length; i++) {
-    //     card.id = `data-${i}`;
-    // }
-}
+
 //Add a button on each book’s display to change its read status.
 //create the function that toggles a book’s read status on your Book prototype instance.
 
@@ -108,8 +98,6 @@ card.appendChild(p2);
 card.appendChild(checkBox);
 card.appendChild(button);
 container.appendChild(card);
-//idNum += 1;
-
 }
 
 
@@ -124,7 +112,6 @@ function addBookToLibrary() {
     if (bookTitle=="" ||bookAuthor==""||bookPages=="") {
         alert("You need to fill in all fields!")
     } else {
-
         const newBook = new Book(idNum,bookTitle,bookAuthor,bookPages);
         myLibrary.push(newBook);
         localStorage.setItem("allEntries", JSON.stringify(myLibrary));
