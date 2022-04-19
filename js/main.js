@@ -2,7 +2,6 @@ document.getElementById('form').style.display = 'none';//Hide form on start
 document.getElementById('hideform').style.display = 'none';
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: //author, title, number of pages, whether it’s been read and anything else you might want.
 function bookForm(){
-
     document.getElementById('form').style.display = 'block';
     document.getElementById('hideform').style.display = 'block';
     document.getElementById('bookform').style.display = 'none';
@@ -11,16 +10,26 @@ function bookForm(){
 function hideForm(){
     document.getElementById('form').style.display = 'none';
     document.getElementById('bookform').style.display = 'block';
-    document.getElementById('hideform').style.display = 'none';
-    
+    document.getElementById('hideform').style.display = 'none';    
 }
 
-
-
-
-//Add a button on each book’s display to remove the book from the library.
-//You will need to associate your DOM elements with the actual book objects in some way. 
-//One easy solution is giving them a data-attribute that corresponds to the index of the library array.
+function clearCards() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.remove();
+  });
+}
+function updateCardIds(){
+    let count = 0;
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.id = `data-${count}`;
+        count += 1;
+  });
+    // for (let i = 0; i < myLibrary.length; i++) {
+    //     card.id = `data-${i}`;
+    // }
+}
 //Add a button on each book’s display to change its read status.
 //create the function that toggles a book’s read status on your Book prototype instance.
 
@@ -40,12 +49,11 @@ function displayBooks(){
         let item = myLibrary[i];
         createCard(item.title,item.author,item.pages)// run the create card function for each object in my Library
     }
-
 }
 function countBooks(){
     document.getElementById('count').textContent = `Your Library has ${myLibrary.length} books`;
 }
-document.getElementById('count').textContent = `Your Library has ${myLibrary.length} books`;//Show books in library
+countBooks()//Show number of books in library on load
 
 class Book {
     constructor(title, author, pages){
@@ -55,17 +63,12 @@ class Book {
         //this.read = read
     }
 }
-
-
-
- function removeBook(){
-    console.log('removed');
-
- }
 function createCard (title,author, pages){//function to create a card div
     const card = document.createElement('div');
     card.classList.add("card");
+    //One easy solution is giving them a data-attribute that corresponds to the index of the library array.
     card.id = `data-${idNum}`;
+    //You will need to associate your DOM elements with the actual book objects in some way. 
     const cardId = idNum;
     const p1 = document.createElement("p");
     p1.textContent = `Title is ${title}`;
@@ -74,25 +77,36 @@ function createCard (title,author, pages){//function to create a card div
     const p3 = document.createElement("p");
     p3.textContent = `Author is ${author}`   
     const button = document.createElement('button');
+    const checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
+
+    //Add a button on each book’s display to remove the book from the library.
     button.textContent = `Remove Book`;
     button.className = 'form-control'; 
     button.onclick = function(){
-    document.getElementById(`data-${cardId}`).remove(); 
-    myLibrary.splice(cardId, 1); 
-    if(myLibrary.length > 0) {
-    localStorage.setItem("allEntries", JSON.stringify(myLibrary)); 
-} else {
-    localStorage.clear();}
-    countBooks();
-    return false;
-  };
-    card.appendChild(p1);
-    card.appendChild(p3);
-    card.appendChild(p2);
-    card.appendChild(button);
-    container.appendChild(card);
-    idNum += 1;
-    }
+        console.clear();
+       // updateCardIds(); //
+        document.getElementById(`data-${cardId}`).remove(); 
+        console.log(`${myLibrary.length} after card ${cardId} removed`);
+        myLibrary.splice(cardId, 1); 
+        console.log(`${myLibrary.length} after card ${cardId} splice`);
+    if(myLibrary.length > 0) {//if anything in library, save in localStorage
+        localStorage.setItem("allEntries", JSON.stringify(myLibrary)); 
+} else {//else delete the library from localStorage
+    localStorage.removeItem("allEntries");
+}
+countBooks();
+return false;
+};
+card.appendChild(p1);
+card.appendChild(p3);
+card.appendChild(p2);
+card.appendChild(checkBox);
+card.appendChild(button);
+container.appendChild(card);
+idNum += 1;
+
+}
 
 
 //add a function to the script  that can take user’s input and store the new book objects into an array. 
@@ -104,14 +118,11 @@ function addBookToLibrary() {
         alert("You need to fill in all fields!")
     } else {
 
-    const newBook = new Book(bookTitle,bookAuthor,bookPages);
-    myLibrary.push(newBook);
-    //localStorage.setItem('book', JSON.stringify(newBook));
-    localStorage.setItem("allEntries", JSON.stringify(myLibrary));
-    let card = createCard(bookTitle,bookAuthor,bookPages);
+        const newBook = new Book(bookTitle,bookAuthor,bookPages);
+        myLibrary.push(newBook);
+        localStorage.setItem("allEntries", JSON.stringify(myLibrary));
+        let card = createCard(bookTitle,bookAuthor,bookPages);
     }
     countBooks();//update number after adding new book
 
-    //idNum += 1;
-    //idNum++;
 }
