@@ -81,7 +81,9 @@ function createCard (idNo,title,author, pages){//function to create a card div
        // updateCardIds(); //
         document.getElementById(`data-${cardId}`).remove(); 
         //return array with all elements not having the particular card id
-        myLibrary = myLibrary.filter(function(el) { return el.idNo != cardId; }); 
+
+        myLibrary = myLibrary.filter(book => book.idNo != cardId);
+        //myLibrary = myLibrary.filter(function(el) { return el.idNo != cardId; }); 
        // myLibrary.splice(cardId, 1); //removes the wrong thing
     if(myLibrary.length > 0) {//if anything in library, save in localStorage
         localStorage.setItem("allEntries", JSON.stringify(myLibrary)); 
