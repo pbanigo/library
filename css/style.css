@@ -66,10 +66,10 @@ body {
   left: 0;
 }
 #sidebar {
-
-    position: relative;
+    position: sticky;
     width: 100%;
     margin: auto;
+    background-color: white;
 }
 
 #books {
@@ -80,7 +80,6 @@ body {
     margin: 10% auto;
 }
 #app{
-	margin-top: 10%;
 	max-width: auto;
 }
 }
